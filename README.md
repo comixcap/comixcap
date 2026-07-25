@@ -2,7 +2,7 @@
 
 **iOS developer — SwiftUI, offline-first apps with no third-party dependencies.**
 
-I build complete iOS applications end to end: architecture, simulation engines, custom vector graphics and App Store submission. Everything below ships without SPM packages, CocoaPods, backends or accounts — and without a single raster image asset. All artwork is drawn in code with `Canvas` and `Path`.
+I build complete iOS applications: architecture, simulation engines and custom vector graphics. Everything below runs without SPM packages, CocoaPods, backends or accounts — and without a single raster image asset. All artwork is drawn in code with `Canvas` and `Path`.
 
 ---
 
