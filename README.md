@@ -33,6 +33,14 @@ A queueing-theory sandbox: distribute a case backlog across inspectors under six
 - **No asset shortcuts.** Covers, loaders, backgrounds and game scenes are vector art written in `Canvas` / `Path`, rasterized once through `.drawingGroup()` for scroll performance
 - **No placeholders.** Every button runs a real method, every write persists, every screen has a way out
 
+## How these were built
+
+I build these with Claude, Anthropic's AI assistant, as a coding partner — and I'd rather say so up front than have it be a question.
+
+What that means in practice: I write the specification, set the architecture constraints the code has to live inside — no third-party dependencies, no raster assets, `UserDefaults` through a single store, a proportional layout that survives from iPhone SE to iPad — and I run the review cycle. I read what comes back, test it in the simulator across device sizes, and send it back when it's wrong. The assistant writes code against that spec; the decisions about what gets built, how it's structured and whether it's actually finished are mine.
+
+The engines are the part I'd point at: a recursive formula parser, a seeded RNG, procedural audio synthesis. They work, they're testable, and I can walk through why each one is written the way it is.
+
 ## Contact
 
 [comixcap@gmail.com](mailto:comixcap@gmail.com) · open to iOS work — contract or full-time
