@@ -13,6 +13,11 @@ Talks to a real engine control unit through an ELM327 adapter and works out whet
 
 `SwiftUI` · `CoreBluetooth` · `POSIX sockets` · `actor` · ~6,300 lines · RU/EN
 
+### [TOON_TOON](https://github.com/comixcap/TOON_TOON) — pixel-art platformer, iOS
+A game with **no asset files of any kind**. Every sprite is a character grid authored in Python, reviewed as a rendered image on both a pale and a near-black background, then emitted into Swift source — the previewer ships **its own PNG encoder** (zlib plus hand-built chunks, no dependencies). The engine is hand-written: `CADisplayLink` driving a fixed 1/60 s timestep with spiral protection, axis-separated tile collision, coyote time and jump buffering, four boss state machines. Levels generate deterministically from a per-district seed. All music and effects are synthesized at runtime through `AVAudioEngine`.
+
+`SwiftUI` · `Canvas` · `CADisplayLink` · `AVFoundation` · `Python` · ~7,750 lines Swift + ~1,300 Python
+
 ### [Synthix](https://github.com/comixcap/Synthix) — chemistry lab simulator
 A reaction sandbox that actually understands what you type. `ChemEngine` implements a **recursive descent parser for chemical formulas** with nested parentheses and multipliers, verifies atom conservation across the equation, scores reagent sets against known reaction pathways, and simulates the run against temperature, pressure, medium, catalyst and addition order — then names the reason it failed.
 
