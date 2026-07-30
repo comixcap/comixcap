@@ -48,9 +48,11 @@ A queueing-theory sandbox: distribute a case backlog across inspectors under six
 
 I build these with Claude, Anthropic's AI assistant, as a coding partner — and I'd rather say so up front than have it be a question.
 
-What that means in practice: I write the specification, set the architecture constraints the code has to live inside — no third-party dependencies, no raster assets, `UserDefaults` through a single store, a proportional layout that survives from iPhone SE to iPad — and I run the review cycle. I read what comes back, test it in the simulator across device sizes, and send it back when it's wrong. The assistant writes code against that spec; the decisions about what gets built, how it's structured and whether it's actually finished are mine.
+What that means in practice: I write the specification, set the architecture constraints the code has to live inside — no third-party dependencies, no raster assets, `UserDefaults` through a single store, a proportional layout that survives from iPhone SE to iPad — and I run the review cycle. The assistant writes code against that spec; the decisions about what gets built, how it's structured and whether it's actually finished are mine.
 
-The engines are the part I'd point at: a transport layer on raw sockets, an OBD-II protocol parser that survives malformed hardware responses, a recursive formula parser, a seeded RNG, procedural audio synthesis. They work, they're testable, and I can walk through why each one is written the way it is.
+**I verify by testing, not by taking output on trust.** Across device sizes from iPhone SE to iPad. On upgrade paths over existing saved data, not only on a clean install — that is how I caught a change that would have silently wiped every existing player's progress, because the synthesized `Codable` conformance throws on a field that isn't there yet. And through purpose-built harnesses where checking by hand is expensive: AutoScan ships a Python ECU emulator and a headless self-test, so the whole diagnostic stack can be exercised end to end without a car.
+
+The engines are the part I'd point at: a transport layer on raw sockets, an OBD-II protocol parser that survives malformed hardware responses, a recursive formula parser, a seeded RNG, procedural audio synthesis. They work, and they can be checked — which matters more than my word for it.
 
 ## Contact
 
