@@ -18,6 +18,11 @@ A game with **no asset files of any kind**. Every sprite is a character grid aut
 
 `SwiftUI` · `Canvas` · `CADisplayLink` · `AVFoundation` · `Python` · ~12,800 lines Swift + ~2,150 Python
 
+### [Tinlark](https://github.com/comixcap/Tinlark) — vertical shoot 'em up, iOS
+A 120 Hz fixed-timestep simulation running inside SwiftUI without fighting it: `Mainspring` owns the whole battle and **never publishes** — it conforms to `ObservableObject` only to live in a `@StateObject`. One `CADisplayLink` beat is observed by exactly one view; the HUD reads a separate store that writes a field only when the value changed. The entire battle draws in a single `Canvas` pass, layer order chosen so a death cloud can't hide incoming fire. Balance is a data layer the engine knows nothing about — an enemy is a hull plus a volley plan plus a motion plan, both small DSLs. Music is sequenced in code, art is geometry in code: **no asset files at all**.
+
+`SwiftUI` · `Canvas` · `CADisplayLink` · `AVFoundation` · ~8,500 lines
+
 ### [Synthix](https://github.com/comixcap/Synthix) — chemistry lab simulator
 A reaction sandbox that actually understands what you type. `ChemEngine` implements a **recursive descent parser for chemical formulas** with nested parentheses and multipliers, verifies atom conservation across the equation, scores reagent sets against known reaction pathways, and simulates the run against temperature, pressure, medium, catalyst and addition order — then names the reason it failed.
 
