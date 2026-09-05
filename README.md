@@ -3,11 +3,12 @@
 **AI engineer for software delivery — I build the systems that let coding agents ship
 production apps, and the gates that keep them honest. Swift/Kotlin engineer underneath.**
 
-Three years of running Claude Code agents on real client work. The result is not a
-prompt collection but an operated system: a multi-agent pipeline that has produced 700+
-mobile app builds from client specifications since March 2026, with a Telegram dispatcher,
-parallel background workers, mechanical quality gates that no agent can talk past, and a
-rulebook that grows from the fixes I make by hand.
+Three years of running Claude Code agents on real client work for a mobile app studio
+(contract, NDA). The result is not a prompt collection but an operated system: a
+multi-agent pipeline that has produced 700+ iOS and Android builds from client
+specifications since March 2026, with a Telegram dispatcher, parallel background workers,
+mechanical quality gates that no agent can talk past, and a rulebook that grows from the
+fixes I make by hand.
 
 ---
 
@@ -37,12 +38,14 @@ assembly and garbage resilience, an `actor` serialising device access. Ships a *
 ECU emulator** and a headless `--selftest`, so the whole stack is testable without a car.
 `Swift` · `POSIX sockets` · `CoreBluetooth` · `Python` · ~6,300 lines
 
-### [DuneRoller](https://github.com/comixcap/DuneRoller) — push-your-luck arcade, Android
-Kotlin + Jetpack Compose, `withFrameNanos` loop with dt clamp, world in metres, gameplay
-fairness proven by arithmetic (obstacle height < jump apex), upgrades that change formulas,
-tolerant persistence, script-generated audio. First game produced after porting the
-delivery rulebook from iOS to a second platform.
-`Kotlin` · `Compose` · ~3,700 lines
+### [Android port of the pipeline](https://github.com/comixcap/agent-delivery-pipeline/blob/main/docs/android-port.md) — second platform in one iteration
+A client-commissioned arcade game (Kotlin + Jetpack Compose, ~3,700 lines, shipped to
+Google Play, under NDA) was the first build through the ported pipeline: a new platform
+rulebook written from the operator's corrections during the build, three workflows
+(build / designer assets / packaging), and a standard-library audio generator so games ship
+with original sound. The case study lists what the agent got wrong on Android and the rule
+each mistake produced.
+`Kotlin` · `Compose` · `Python` · rulebook + workflows + tool public, game private
 
 ### [TOON_TOON](https://github.com/comixcap/TOON_TOON) — pixel-art platformer, iOS
 No asset files: sprites are character grids authored in Python and emitted as Swift
