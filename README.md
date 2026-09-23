@@ -5,8 +5,9 @@ production apps, and the gates that keep them honest. Swift/Kotlin engineer unde
 
 Three years of running Claude Code agents on real client work for a mobile app studio
 (contract, NDA). The result is not a prompt collection but an operated system: a
-multi-agent pipeline that has produced 700+ iOS and Android builds from client
-specifications since March 2026, with a Telegram dispatcher, parallel background workers,
+multi-agent pipeline that has produced 800+ iOS and Android builds from client
+specifications since March 2026 (21 Flutter games in September alone, 10 iOS apps in one
+day), with a self-built Telegram bridge to a dispatcher agent, parallel background workers,
 mechanical quality gates that no agent can talk past, and a rulebook that grows from the
 fixes I make by hand.
 
@@ -15,17 +16,19 @@ fixes I make by hand.
 ## Agent systems
 
 ### [agent-delivery-pipeline](https://github.com/comixcap/agent-delivery-pipeline) — spec → release-ready build, unattended
-Dispatcher agent on Telegram that classifies and queues but never executes; build lane
+Dispatcher agent on Telegram — reached through an **own Bot API bridge** that replaced the
+MCP plugin (single poller, 409 as a diagnosis, a watchdog that reads the session screen,
+not the PID) — classifies and queues but never executes; build lane
 (≤ 6 parallel agent sessions, five stages, git snapshot each) and fast lane (store-review
 replies, recolors); **non-LLM gates** — compile, an 11-section static-analysis script, a
-fingerprint comparison against 759 previously built apps; **self-improvement loop** — Stop
+fingerprint comparison against 826 previously built apps; **self-improvement loop** — Stop
 hook journals manual fixes → nightly agent proposes rules → human adopts. Includes a
 17-class **agent failure catalog** mapped to the gate that catches each, a tool policy
 (no network, no store, no force-push, no simulator), and a zero-dependency **BM25 RAG +
 eval harness** over the rulebook (hit@1 0.92, hit@5 1.0, MRR 0.95 on 26 symptoms, clean
 abstention on out-of-scope).
 
-`Claude Code` · `multi-agent orchestration` · `context engineering` · `launchd` · `zsh` · `Python`
+`Claude Code` · `multi-agent orchestration` · `context engineering` · `Telegram Bot API` · `launchd` · `tmux` · `Python`
 
 ---
 
@@ -38,14 +41,14 @@ assembly and garbage resilience, an `actor` serialising device access. Ships a *
 ECU emulator** and a headless `--selftest`, so the whole stack is testable without a car.
 `Swift` · `POSIX sockets` · `CoreBluetooth` · `Python` · ~6,300 lines
 
-### [Android port of the pipeline](https://github.com/comixcap/agent-delivery-pipeline/blob/main/docs/android-port.md) — second platform in one iteration
-A client-commissioned arcade game (Kotlin + Jetpack Compose, ~3,700 lines, shipped to
-Google Play, under NDA) was the first build through the ported pipeline: a new platform
-rulebook written from the operator's corrections during the build, three workflows
-(build / designer assets / packaging), and a standard-library audio generator so games ship
-with original sound. The case study lists what the agent got wrong on Android and the rule
-each mistake produced.
-`Kotlin` · `Compose` · `Python` · rulebook + workflows + tool public, game private
+### [Android branch of the pipeline](https://github.com/comixcap/agent-delivery-pipeline/blob/main/docs/android-port.md) — from zero to hands-off in two weeks
+First a Kotlin + Compose arcade game (~3,700 lines, shipped to Google Play) proved the
+orchestration was platform-agnostic. Then the branch was rebuilt on **Flutter** and taken
+to the iOS level of automation: **21 games delivered 7–23 Sep 2026**, 5–7k lines of Dart
+each, every one with headless layout tests at three screen sizes and an audio-context test,
+20 of 21 with a solver checking level fairness. Each defect the operator caught once became
+a rule plus a test the agent runs itself.
+`Flutter` · `Dart` · `Kotlin` · `Python` · case study, rulebook, workflows public; games private
 
 ### [TOON_TOON](https://github.com/comixcap/TOON_TOON) — pixel-art platformer, iOS
 No asset files: sprites are character grids authored in Python and emitted as Swift
